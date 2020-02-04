@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pycrometer.iml" filepath="$PROJECT_DIR$/.idea/pycrometer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/knotty.iml" filepath="$PROJECT_DIR$/.idea/knotty.iml" />
     </modules>
   </component>
 </project>
