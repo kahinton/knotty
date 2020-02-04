@@ -4,6 +4,6 @@ python:
 install:
   - pip install pytest-cov codecov
 script:
-  - pytest --cov=wsgimagic tests/
+  - pytest --cov=knotty tests/
 after_success:
   - codecov
