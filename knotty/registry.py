@@ -16,33 +16,33 @@ class MeterRegistry:
     _thread: Thread = None
 
     @classmethod
-    def add_meter(cls, meter: "knotty_old.meters.BaseMeter") -> None:
+    def add_meter(cls, meter: "knotty.meters.BaseMeter") -> None:
         """
         Adds a new meter to the registry dictionary.
-        :param meter: knotty_old.meters.BaseMeter
+        :param meter: knotty.meters.BaseMeter
         :return:
         """
         meter_key = tuple([meter.__class__, meter.name])
         cls._meters[meter_key] = meter
 
     @classmethod
-    def get_meter(cls, name: str, meter_class: "knotty_old.meters.BaseMeter") -> "knotty_old.meters.BaseMeter":
+    def get_meter(cls, name: str, meter_class: "knotty.meters.BaseMeter") -> "knotty.meters.BaseMeter":
         """
         Either returns the requested meter from the registry if it has already been created, or creates the requested
         meter (which will automatically register itself). This is the suggested way of getting a reference to
         any desired meter.
 
         :param name: str: The name of the meter
-        :param meter_class: The desired subclass of knotty_old.meters.BaseMeter that should be created or returned
-        :return: knotty_old.meters.BaseMeter
+        :param meter_class: The desired subclass of knotty.meters.BaseMeter that should be created or returned
+        :return: knotty.meters.BaseMeter
         """
         return cls._meters.get(tuple([meter_class, name])) or meter_class(name)
 
     @classmethod
-    def is_meter_registered(cls, meter: "knotty_old.meters.BaseMeter") -> bool:
+    def is_meter_registered(cls, meter: "knotty.meters.BaseMeter") -> bool:
         """
         Verifies whether the input meter has been added to the registry previously and returns the corresponding bool.
-        :param meter: Any meter that inherits from the knotty_old.meters.BaseMeter class
+        :param meter: Any meter that inherits from the knotty.meters.BaseMeter class
         :return: bool: Whether or not the given meter has already been added to the registry
         """
         return tuple([meter.__class__, meter.name]) in cls._meters.keys()
@@ -58,21 +58,21 @@ class MeterRegistry:
         cls._loop.run_forever()
 
     @classmethod
-    async def _async_gather_metrics(cls) -> "[knotty_old.meters.Metric]":
+    async def _async_gather_metrics(cls) -> "[knotty.meters.Metric]":
         """
         Creates a list of synchronous tasks and applies them to the class async event loop.
-        :return: [knotty_old.meters.Metric]: A list of metrics returned from the registered meters
+        :return: [knotty.meters.Metric]: A list of metrics returned from the registered meters
         """
         tasks = [cls._loop.create_task(meter.get_metrics()) for key, meter in cls._meters.items()]
         results = await asyncio.gather(*tasks)
         return results
 
     @classmethod
-    def get_all_metrics(cls) -> "[knotty_old.meters.Metric]":
+    def get_all_metrics(cls) -> "[knotty.meters.Metric]":
         """
         Ensures that the classes execution thread is up and running before managing the collection and return of all
         metrics from all registered meters.
-        :return: [knotty_old.meters.Metric]: A flattened list of all metrics from all registered meters
+        :return: [knotty.meters.Metric]: A flattened list of all metrics from all registered meters
         """
         if cls._thread is None:
             cls._thread = Thread(target=cls._start_background_loop, daemon=True)
