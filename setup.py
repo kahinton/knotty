@@ -9,5 +9,6 @@ setup(name='knotty',
       packages=find_packages(exclude=('tests',)),
       author="Kyle Hinton",
       license="MIT",
+      install_requires=['psutil', 'flask', 'requests', 'numpy'],
       long_description=long_desc,
       long_description_content_type='text/markdown')
