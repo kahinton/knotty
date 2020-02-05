@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4b1b61b1-2fb2-4671-8726-f0dccfa3355e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_exporters.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_exporters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_knotty.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_knotty.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_meters.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_meters.py" afterDir="false" />
@@ -97,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1570904581226</updated>
       <workItem from="1570904582531" duration="5027000" />
-      <workItem from="1580784661814" duration="4114000" />
+      <workItem from="1580784661814" duration="4214000" />
     </task>
     <servers />
   </component>
