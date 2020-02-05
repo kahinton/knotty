@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b1b61b1-2fb2-4671-8726-f0dccfa3355e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/knotty.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/knotty.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_exporters.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_exporters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_knotty.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_knotty.py" afterDir="false" />
@@ -12,6 +14,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="317" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -46,6 +51,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python tests.Unittests in tests">
     <configuration name="pycrometer" type="Python.FlaskServer">
@@ -96,7 +102,7 @@
       <option name="presentableId" value="Default" />
       <updated>1570904581226</updated>
       <workItem from="1570904582531" duration="5027000" />
-      <workItem from="1580784661814" duration="4214000" />
+      <workItem from="1580784661814" duration="4970000" />
     </task>
     <servers />
   </component>
@@ -108,22 +114,26 @@
       <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state x="530" y="111" key="#Unittests_in_tests/0.23.1680.947@0.23.1680.947" timestamp="1580784742930" />
-    <state width="1638" height="235" key="GridCell.Tab.0.bottom" timestamp="1580784921839">
+    <state width="1638" height="235" key="GridCell.Tab.0.bottom" timestamp="1580870534406">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state width="1638" height="235" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1580784921839" />
-    <state width="1638" height="235" key="GridCell.Tab.0.center" timestamp="1580784921838">
+    <state width="1638" height="235" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1580870534406" />
+    <state width="1638" height="235" key="GridCell.Tab.0.center" timestamp="1580870534405">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state width="1638" height="235" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1580784921838" />
-    <state width="1638" height="235" key="GridCell.Tab.0.left" timestamp="1580784921838">
+    <state width="1638" height="235" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1580870534405" />
+    <state width="1638" height="235" key="GridCell.Tab.0.left" timestamp="1580870534405">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state width="1638" height="235" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1580784921838" />
-    <state width="1638" height="235" key="GridCell.Tab.0.right" timestamp="1580784921839">
+    <state width="1638" height="235" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1580870534405" />
+    <state width="1638" height="235" key="GridCell.Tab.0.right" timestamp="1580870534406">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
-    <state width="1638" height="235" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1580784921839" />
+    <state width="1638" height="235" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1580870534406" />
+    <state x="341" y="135" key="SettingsEditor" timestamp="1580870174584">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="341" y="135" key="SettingsEditor/0.23.1680.947@0.23.1680.947" timestamp="1580870174584" />
     <state x="488" y="237" width="858" height="518" key="find.popup" timestamp="1580848008847">
       <screen x="0" y="23" width="1680" height="947" />
     </state>
@@ -131,6 +141,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pycrometer$pycrometer.coverage" NAME="pycrometer Coverage Results" MODIFIED="1570906732576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/knotty$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1580784742965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/knotty$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1580870192697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
