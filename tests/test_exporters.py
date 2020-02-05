@@ -1,4 +1,10 @@
 import unittest
+import os
+import sys
+lib_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')), 'wsgimagic')
+if lib_dir not in sys.path:
+    sys.path.insert(1, lib_dir)
+
 from knotty import Knotty
 import knotty.registry as registry
 import knotty.exporters as exporters
