@@ -11,6 +11,7 @@ setup(name='knotty',
       license="MIT",
       install_requires=['psutil', 'flask', 'requests', 'numpy'],
       long_description=long_desc,
+      url="https://github.com/kahinton/knotty",
       long_description_content_type='text/markdown',
       python_requires='>=3.7'
       )
