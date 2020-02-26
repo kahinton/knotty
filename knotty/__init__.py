@@ -12,6 +12,22 @@ import sys
 __all__ = ["exporters", "meters", "registry"]
 
 
+def timer(name) -> meters.Timer:
+    return registry.MeterRegistry.get_meter(name, meters.Timer)
+
+
+def counter(name) -> meters.Counter:
+    return registry.MeterRegistry.get_meter(name, meters.Counter)
+
+
+def gauge(name) -> meters.Gauge:
+    return registry.MeterRegistry.get_meter(name, meters.Gauge)
+
+
+def histogram(name) -> meters.Histogram:
+    return registry.MeterRegistry.get_meter(name, meters.Histogram)
+
+
 class Knotty:
     @classmethod
     def _start_system_monitors(cls) -> None:
@@ -21,44 +37,44 @@ class Knotty:
         :return:
         """
         process = psutil.Process()
-        process_cpu_gauge = registry.MeterRegistry.get_meter("process_cpu_percentage", meters.Gauge)
+        process_cpu_gauge = gauge("process_cpu_percentage")
         process_cpu_gauge.add_tags({"pid": process.pid.real})
         process_cpu_gauge.set_gauge_function(process.cpu_percent)
 
-        system_cpu_gauge = registry.MeterRegistry.get_meter("system_cpu_percentage", meters.Gauge)
+        system_cpu_gauge = gauge("system_cpu_percentage")
         system_cpu_gauge.set_gauge_function(psutil.cpu_percent)
 
-        process_memory_gauge = registry.MeterRegistry.get_meter("process_memory_percentage", meters.Gauge)
+        process_memory_gauge = gauge("process_memory_percentage")
         process_memory_gauge.add_tags({"pid": process.pid.real})
         process_memory_gauge.set_gauge_function(process.memory_percent)
 
-        process_thread_gauge = registry.MeterRegistry.get_meter("process_thread_count", meters.Gauge)
+        process_thread_gauge = gauge("process_thread_count")
         process_thread_gauge.add_tags({"pid": process.pid.real})
         process_thread_gauge.set_gauge_function(process.num_threads)
 
-        process_files_gauge = registry.MeterRegistry.get_meter("process_open_file_count", meters.Gauge)
+        process_files_gauge = gauge("process_open_file_count")
         process_files_gauge.add_tags({"pid": process.pid.real})
         process_files_gauge.set_gauge_function(lambda: len(process.open_files()))
 
-        process_mem_info_gauge = registry.MeterRegistry.get_meter("process_memory_info", meters.Gauge)
+        process_mem_info_gauge = gauge("process_memory_info")
         process_mem_info_gauge.add_tags({"pid": process.pid.real})
         process_mem_info_gauge.set_gauge_function(lambda: process.memory_full_info()._asdict(), key_tag="memory_type")
 
-        disk_total_gauge = registry.MeterRegistry.get_meter("disk_space_total", meters.Gauge)
+        disk_total_gauge = gauge("disk_space_total")
         disk_total_gauge.set_gauge_function(lambda: {part.mountpoint: psutil.disk_usage(part.mountpoint).total
                                                      for part in psutil.disk_partitions()}, key_tag="mount_point")
 
-        disk_used_gauge = registry.MeterRegistry.get_meter("disk_space_used", meters.Gauge)
+        disk_used_gauge = gauge("disk_space_used")
         disk_used_gauge.set_gauge_function(lambda: {part.mountpoint: psutil.disk_usage(part.mountpoint).used
                                                     for part in psutil.disk_partitions()}, key_tag="mount_point")
 
-        disk_io_gauge = registry.MeterRegistry.get_meter("disk_io_stats", meters.Gauge)
+        disk_io_gauge = gauge("disk_io_stats")
         disk_io_gauge.set_gauge_function(lambda: psutil.disk_io_counters()._asdict(), key_tag="stat")
 
-        system_memory_gauge = registry.MeterRegistry.get_meter("system_memory_stats", meters.Gauge)
+        system_memory_gauge = gauge("system_memory_stats")
         system_memory_gauge.set_gauge_function(lambda: psutil.virtual_memory()._asdict(), key_tag="stat")
 
-        system_network_gauge = registry.MeterRegistry.get_meter("system_network_io_stats", meters.Gauge)
+        system_network_gauge = gauge("system_network_io_stats")
         system_network_gauge.set_gauge_function(lambda: psutil.net_io_counters()._asdict(), key_tag="stat")
 
     @classmethod
@@ -68,7 +84,7 @@ class Knotty:
         will continue to grow as development continues.
         :return:
         """
-        logging_counter = registry.MeterRegistry.get_meter("logback_events_count", meters.Counter)
+        logging_counter = counter("logback_events_count")
 
         logging_counter.augmentor = lambda self, method, results, *args, **kwargs: self.set_tags({"level": method.__name__})
         Logger.info = logging_counter.auto_count_method(Logger.info)
@@ -86,7 +102,7 @@ class Knotty:
         """
         if "requests" in sys.modules.keys():
             import requests
-            request_timer = registry.MeterRegistry.get_meter("requests_http", meters.Timer)
+            request_timer = timer("requests_http")
             request_timer.augmentor = lambda self, method, results, *args, **kwargs: self.set_tags({"url": args[1],
                                                                                                     "method": args[0],
                                                                                                     "status_code": results.status_code})
@@ -95,7 +111,7 @@ class Knotty:
         if "flask" in sys.modules.keys() or "Flask" in sys.modules.keys():
             from flask import Flask
             from flask.wrappers import Response
-            flask_timer = registry.MeterRegistry.get_meter("flask_http_request", meters.Timer)
+            flask_timer = timer("flask_http_request")
             flask_timer.augmentor = lambda self, method, results, *args, **kwargs: self.set_tags({"path": args[1]["PATH_INFO"],
                                                                                                   "method": args[1]["REQUEST_METHOD"],
                                                                                                   "status_code": [response.__self__._status_code

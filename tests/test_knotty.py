@@ -5,7 +5,7 @@ lib_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if lib_dir not in sys.path:
     sys.path.insert(1, lib_dir)
 
-from knotty import Knotty
+from knotty import Knotty, timer, counter, gauge, histogram
 import knotty.registry as registry
 import knotty.meters as meters
 import logging
@@ -36,6 +36,22 @@ class TestKnotty(unittest.TestCase):
                           (meters.Timer, "requests_http"),
                           (meters.Counter, "flask_http_request_time_count"),
                           (meters.Timer, "flask_http_request")])
+
+    def test_timer_returns_timer_as_expected(self):
+        test_timer = timer("test_timer")
+        self.assertTrue(isinstance(test_timer, meters.Timer))
+
+    def test_counter_returns_timer_as_expected(self):
+        test_counter = counter("test_counter")
+        self.assertTrue(isinstance(test_counter, meters.Counter))
+
+    def test_gauge_returns_timer_as_expected(self):
+        test_gauge = gauge("test_gauge")
+        self.assertTrue(isinstance(test_gauge, meters.Gauge))
+
+    def test_histogram_returns_timer_as_expected(self):
+        test_histogram = histogram("test_histogram")
+        self.assertTrue(isinstance(test_histogram, meters.Histogram))
 
 
 if __name__ == '__main__':
