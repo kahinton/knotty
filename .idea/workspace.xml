@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b1b61b1-2fb2-4671-8726-f0dccfa3355e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knotty/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/knotty/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_knotty.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_knotty.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +97,7 @@
       <updated>1570904581226</updated>
       <workItem from="1570904582531" duration="5027000" />
       <workItem from="1580784661814" duration="6267000" />
-      <workItem from="1581339654829" duration="4297000" />
+      <workItem from="1581339654829" duration="4479000" />
     </task>
     <servers />
   </component>
