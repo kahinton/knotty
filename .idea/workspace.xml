@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b1b61b1-2fb2-4671-8726-f0dccfa3355e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/make.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/exporters.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/meters.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/registry.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/knotty/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knotty/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/knotty/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_knotty.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_core.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,10 +55,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/knotty" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/knotty" />
+      <recent name="$PROJECT_DIR$/docs/source" />
+    </key>
   </component>
   <component name="RunManager" selected="Python tests.Unittests in tests">
     <configuration name="pycrometer" type="Python.FlaskServer">
@@ -97,7 +116,11 @@
       <updated>1570904581226</updated>
       <workItem from="1570904582531" duration="5027000" />
       <workItem from="1580784661814" duration="6267000" />
-      <workItem from="1581339654829" duration="4479000" />
+      <workItem from="1581339654829" duration="7837000" />
+      <workItem from="1585679586984" duration="5966000" />
+      <workItem from="1586200518567" duration="192000" />
+      <workItem from="1586798619591" duration="255000" />
+      <workItem from="1589330767258" duration="3042000" />
     </task>
     <servers />
   </component>
@@ -109,30 +132,35 @@
       <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state x="530" y="111" key="#Unittests_in_tests/0.23.1680.947@0.23.1680.947" timestamp="1580784742930" />
-    <state width="1638" height="235" key="GridCell.Tab.0.bottom" timestamp="1582736859514">
-      <screen x="0" y="23" width="1680" height="947" />
+    <state width="1638" height="235" key="GridCell.Tab.0.bottom" timestamp="1585074954084">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
+    <state width="1638" height="235" key="GridCell.Tab.0.bottom/-1165.-2137.3840.2137/0.23.1680.1027@0.23.1680.1027" timestamp="1585074954084" />
     <state width="1638" height="235" key="GridCell.Tab.0.bottom/-957.-2137.3840.2137/0.23.1680.947@0.23.1680.947" timestamp="1582736859514" />
     <state width="1638" height="235" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1580870534406" />
-    <state width="1638" height="235" key="GridCell.Tab.0.center" timestamp="1582736859512">
-      <screen x="0" y="23" width="1680" height="947" />
+    <state width="1638" height="235" key="GridCell.Tab.0.center" timestamp="1585074954082">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
+    <state width="1638" height="235" key="GridCell.Tab.0.center/-1165.-2137.3840.2137/0.23.1680.1027@0.23.1680.1027" timestamp="1585074954082" />
     <state width="1638" height="235" key="GridCell.Tab.0.center/-957.-2137.3840.2137/0.23.1680.947@0.23.1680.947" timestamp="1582736859512" />
     <state width="1638" height="235" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1580870534405" />
-    <state width="1638" height="235" key="GridCell.Tab.0.left" timestamp="1582736859511">
-      <screen x="0" y="23" width="1680" height="947" />
+    <state width="1638" height="235" key="GridCell.Tab.0.left" timestamp="1585074954075">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
+    <state width="1638" height="235" key="GridCell.Tab.0.left/-1165.-2137.3840.2137/0.23.1680.1027@0.23.1680.1027" timestamp="1585074954075" />
     <state width="1638" height="235" key="GridCell.Tab.0.left/-957.-2137.3840.2137/0.23.1680.947@0.23.1680.947" timestamp="1582736859511" />
     <state width="1638" height="235" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1580870534405" />
-    <state width="1638" height="235" key="GridCell.Tab.0.right" timestamp="1582736859513">
-      <screen x="0" y="23" width="1680" height="947" />
+    <state width="1638" height="235" key="GridCell.Tab.0.right" timestamp="1585074954083">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
+    <state width="1638" height="235" key="GridCell.Tab.0.right/-1165.-2137.3840.2137/0.23.1680.1027@0.23.1680.1027" timestamp="1585074954083" />
     <state width="1638" height="235" key="GridCell.Tab.0.right/-957.-2137.3840.2137/0.23.1680.947@0.23.1680.947" timestamp="1582736859513" />
     <state width="1638" height="235" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1580870534406" />
-    <state x="341" y="135" key="SettingsEditor" timestamp="1581339959732">
-      <screen x="0" y="23" width="1680" height="947" />
+    <state x="341" y="124" key="SettingsEditor" timestamp="1589332442310">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="135" key="SettingsEditor/-957.-2137.3840.2137/0.23.1680.947@0.23.1680.947" timestamp="1581339959732" />
+    <state x="341" y="124" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1589332442310" />
     <state x="341" y="135" key="SettingsEditor/0.23.1680.947@0.23.1680.947" timestamp="1580870174584" />
     <state x="488" y="237" width="858" height="518" key="find.popup" timestamp="1580848008847">
       <screen x="0" y="23" width="1680" height="947" />

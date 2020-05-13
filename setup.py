@@ -4,9 +4,9 @@ with open('README.md', 'r') as readme:
     long_desc = readme.read()
 
 setup(name='knotty',
-      version='0.0.2',
+      version='0.1.0',
       description='Application Performance Monitoring Made Easy',
-      packages=find_packages(exclude=('tests',)),
+      packages=find_packages(exclude=('tests', 'docs', )),
       author="Kyle Hinton",
       license="MIT",
       install_requires=['psutil', 'flask', 'requests', 'numpy'],
