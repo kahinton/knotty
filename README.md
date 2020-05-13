@@ -5,7 +5,7 @@
 
 
 
-###Welcome to Knotty, the easiest way to tie down your application performance metrics!
+### Welcome to Knotty, the easiest way to tie down your application performance metrics!
 
 NOTE: While all the basic functionality is here, Knotty is still in Alpha development. The project aims to have
 more libraries automatically tracked, as well as more export options. APIs and functionality are also apt to 
