@@ -8,6 +8,7 @@ from knotty import meters, registry
 import psutil
 from logging import Logger
 import sys
+from os import getenv
 
 
 def timer(name) -> meters.Timer:
@@ -27,6 +28,14 @@ def histogram(name) -> meters.Histogram:
 
 
 class Knotty:
+    exclusions = getenv("KNOTTY_EXCLUDE") or []
+
+    @classmethod
+    def _check_library_monitor_status(cls, library_name: str) -> bool:
+        if (library_name in sys.modules.keys()) and (library_name not in cls.exclusions):
+            return True
+        return False
+
     @classmethod
     def _start_system_monitors(cls) -> None:
         """
@@ -95,10 +104,12 @@ class Knotty:
         """
         This function will maintain a list of monitors for third party packages. It will check for the presence of the
         libraries in the registered system modules, and if found we will wrap the functionality the appropriate meter
-        and provide a useful augmentor.
+        and provide a useful augmentor. The environment variable KNOTTY_EXCLUDE can be used to create a comma separated
+        list of libraries to exclude from monitoring.
         :return:
         """
-        if "requests" in sys.modules.keys():
+
+        if cls._check_library_monitor_status("requests"):
             import requests
             request_timer = timer("requests_http")
             request_timer.augmentor = lambda self, method, results, *args, **kwargs: self.set_tags({"url": args[1],
@@ -106,7 +117,7 @@ class Knotty:
                                                                                                     "status_code": results.status_code})
             requests.api.request = request_timer.timer(requests.api.request)
 
-        if "flask" in sys.modules.keys() or "Flask" in sys.modules.keys():
+        if cls._check_library_monitor_status("flask") or cls._check_library_monitor_status("Flask"):
             from flask import Flask
             from flask.wrappers import Response
             flask_timer = timer("flask_http_request")
