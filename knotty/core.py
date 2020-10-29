@@ -6,7 +6,7 @@ with minimal effort.
 
 from knotty import meters, registry
 import psutil
-from logging import Logger
+from logging import Logger, getLogger
 import sys
 from os import getenv
 
@@ -43,6 +43,9 @@ class Knotty:
         package. The metrics gathered here are still subject to changes as the package is developed.
         :return:
         """
+        logger = getLogger(f"{cls.__name__}._start_system_monitors")
+        logger.debug("Knotty starting system and process level monitoring.")
+
         process = psutil.Process()
         process_cpu_gauge = gauge("process_cpu_percentage")
         process_cpu_gauge.add_tags({"pid": process.pid.real})
@@ -91,6 +94,7 @@ class Knotty:
         will continue to grow as development continues.
         :return:
         """
+        logger = getLogger(f"{cls.__name__}._start_std_lib_monitoring")
         logging_counter = counter("logback_events_count")
 
         logging_counter.augmentor = lambda self, method, results, *args, **kwargs: self.set_tags({"level": method.__name__})
@@ -98,6 +102,7 @@ class Knotty:
         Logger.warning = logging_counter.auto_count_method(Logger.warning)
         Logger.error = logging_counter.auto_count_method(Logger.error)
         Logger.debug = logging_counter.auto_count_method(Logger.debug)
+        logger.debug("Knotty started standard library monitoring.")
 
     @classmethod
     def _start_third_party_lib_monitors(cls) -> None:
@@ -108,8 +113,11 @@ class Knotty:
         list of libraries to exclude from monitoring.
         :return:
         """
+        logger = getLogger(f"{cls.__name__}._start_third_party_lib_monitors")
+        logger.debug("Knotty starting third party library monitoring.")
 
         if cls._check_library_monitor_status("requests"):
+            logger.debug("Knotty discovered requests, adding metrics.")
             import requests
             request_timer = timer("requests_http")
             request_timer.augmentor = lambda self, method, results, *args, **kwargs: self.set_tags({"url": args[1],
@@ -118,6 +126,7 @@ class Knotty:
             requests.api.request = request_timer.timer(requests.api.request)
 
         if cls._check_library_monitor_status("flask") or cls._check_library_monitor_status("Flask"):
+            logger.debug("Knotty discovered flask, adding metrics.")
             from flask import Flask
             from flask.wrappers import Response
             flask_timer = timer("flask_http_request")
@@ -136,6 +145,8 @@ class Knotty:
         you cannot start your code with a guarantee that Knotty will be the last package loaded.
         :return:
         """
-        cls._start_system_monitors()
+        logger = getLogger(f"{cls.__name__}.initiate_monitors")
+        logger.debug("Knotty initiating.")
         cls._start_std_lib_monitoring()
+        cls._start_system_monitors()
         cls._start_third_party_lib_monitors()

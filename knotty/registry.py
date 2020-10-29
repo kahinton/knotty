@@ -3,6 +3,7 @@ This module should hold the registries responsible for managing different metric
 """
 import asyncio
 from threading import Thread
+from logging import getLogger
 
 
 class RegistryCollisionException(Exception):
@@ -22,7 +23,9 @@ class MeterRegistry:
         :param meter: knotty.meters.BaseMeter
         :return:
         """
+        logger = getLogger(f"{cls.__name__}.add_meter")
         meter_key = tuple([meter.__class__, meter.name])
+        logger.debug(f"Adding meter {meter_key}")
         cls._meters[meter_key] = meter
 
     @classmethod
@@ -54,6 +57,8 @@ class MeterRegistry:
         from the different meters in a concurrent manner.
         :return:
         """
+        logger = getLogger(f"{cls.__name__}._start_background_loop")
+        logger.debug("Starting Knotty background collection loop.")
         asyncio.set_event_loop(cls._loop)
         cls._loop.run_forever()
 
@@ -74,7 +79,10 @@ class MeterRegistry:
         metrics from all registered meters.
         :return: [knotty.meters.Metric]: A flattened list of all metrics from all registered meters
         """
+        logger = getLogger(f"{cls.__name__}.get_all_metrics")
+        logger.debug("Collecting all metrics.")
         if cls._thread is None:
+            logger.debug("Knotty collection thread not initiated, starting now.")
             cls._thread = Thread(target=cls._start_background_loop, daemon=True)
             cls._thread.start()
         task = asyncio.run_coroutine_threadsafe(cls._async_gather_metrics(), cls._loop)
