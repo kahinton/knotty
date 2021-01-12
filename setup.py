@@ -4,7 +4,7 @@ with open('README.md', 'r') as readme:
     long_desc = readme.read()
 
 setup(name='knotty',
-      version='0.3.0',
+      version='0.4.0',
       description='Application Performance Monitoring Made Easy',
       packages=find_packages(exclude=('tests', 'docs', )),
       author="Kyle Hinton",
