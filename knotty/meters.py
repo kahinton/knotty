@@ -320,18 +320,20 @@ class Gauge(BaseMeter):
         self._name = name
         self.value_function = None
         self.key_tag = None
+        self.value_key = None
         self._ensure_registered_with_registry()
         self._integer_return = True
 
-    def set_gauge_function(self, value_function: callable, key_tag: str = None) -> None:
+    def set_gauge_function(self, value_function: callable, key_tag: str = None, value_key: str = None) -> None:
         """
-        Set the function that the gauge will call when measuring a value. The function either needs to return a number
-        or a dictionary whose keys are strings and values are numbers. If your function returns a dictionary, you must
-        provide a key_tag. The key_tag will be used to create unique metric tags from the keys of the dictionary. eg:
+        Set the function that the gauge will call when measuring a value. The function either needs to return a number,
+        a dictionary whose keys are strings and values are numbers, or a list of dictionaries with at least on value
+        that is a number. If your function returns a dictionary, you must provide a key_tag. The key_tag will be used
+        to create unique metric tags from the keys of the dictionary. eg:
         If you provide the key_tag "value_name" and your function produces the following dictionary:
 
         {
-        "value1": 1
+        "value1": 1,
         "value2": 2
         }
 
@@ -341,13 +343,33 @@ class Gauge(BaseMeter):
         Metric("gauge_name", (("value_name", "value2"), 2, "gauge")
         ]
 
+        If your function returns a list of dictionaries, you must also provide a value_key. This must match a key that
+        is found in all of the returned dictionaries. eg:
+
+        If you provide the value_key "value" and your function produces the following list:
+
+        [
+         {"key": "example", "value": 2},
+         {"key": "another", "value": 3}
+        ]
+
+        the following metrics will be returned:
+        [
+        Metric("gauge_name", (("key", "example"), 2, "gauge")
+        Metric("gauge_name", (("key", "another"), 3, "gauge")
+        ]
+
         :param value_function: Function the gauge will use to take a measure. Should return number or {str, number}.
         :param key_tag: str: An identifier to produce unique tags from the keys of a returned dictionary.
+        :param value_key: str: Specifies which key holds the value to measure when value function returns a list
         :return:
         """
         self.value_function = value_function
+        if bool(key_tag) and bool(value_key):
+            raise ValueError("Please provide either key_tag or value_key, but not both")
         self.key_tag = key_tag
-        self._integer_return = not bool(key_tag)
+        self.value_key = value_key
+        self._integer_return = not bool(key_tag) and not bool(value_key)
 
     async def get_metrics(self) -> [Metric]:
         """
@@ -375,8 +397,15 @@ class Gauge(BaseMeter):
                     else:
                         raise ValueError("Gauge {0} received a dictionary response with non-number values"
                                          .format(self.name))
+                elif isinstance(measurement, list):
+                    if all([isinstance(value, dict) for value in measurement]):
+                        return [Metric(self.name,
+                                       base_key + tuple({key: value for key, value in metric.items()
+                                                         if key != self.value_key}.items()),
+                                       float(metric[self.value_key]), "gauge")
+                                for metric in measurement]
                 else:
-                    raise ValueError("Gauge {0} received a value that is neither a number or dict. Received {1}"
+                    raise ValueError("Gauge {0} received a value that is neither a number, dict, or [dict]. Received {1}"
                                      .format(self.name, type(measurement)))
 
         except Exception as e:
